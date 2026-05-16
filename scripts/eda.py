@@ -2,33 +2,64 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# -------------------------------
-# LOAD DATA
-# -------------------------------
-df = pd.read_csv("../data/cleaned_data.csv")
+# =========================================================
+# JOB ACCEPTANCE PREDICTION SYSTEM
+# EXPLORATORY DATA ANALYSIS (EDA)
+# =========================================================
 
 # -------------------------------
-# BASIC INFO
+# LOAD CLEANED DATASET
 # -------------------------------
+# Read cleaned dataset for analysis
+
+df = pd.read_csv("../data/cleaned_data.csv")
+
+# =========================================================
+# BASIC DATA UNDERSTANDING
+# =========================================================
+
+# -------------------------------
+# DATASET SHAPE
+# -------------------------------
+# Shows number of rows and columns
+
 print("Dataset Shape:", df.shape)
+
+# -------------------------------
+# DATASET INFORMATION
+# -------------------------------
+# Displays column names and data types
 
 print("\nDataset Info:\n")
 print(df.info())
 
+# -------------------------------
+# STATISTICAL SUMMARY
+# -------------------------------
+# Displays mean, median, min, max values
+
 print("\nStatistical Summary:\n")
 print(df.describe())
+
+# -------------------------------
+# MISSING VALUE CHECK
+# -------------------------------
+# Verify whether null values exist
 
 print("\nMissing Values:\n")
 print(df.isnull().sum())
 
-# -------------------------------
-# STYLE
-# -------------------------------
+# =========================================================
+# VISUALIZATION STYLE
+# =========================================================
+
 sns.set_style("whitegrid")
 
 # =========================================================
-# 1. TARGET DISTRIBUTION
+# 1. TARGET VARIABLE DISTRIBUTION
 # =========================================================
+# Analyze placement status distribution
+
 plt.figure(figsize=(6, 4))
 
 sns.countplot(
@@ -37,8 +68,8 @@ sns.countplot(
 )
 
 plt.title("Placement Status Distribution")
-plt.xlabel("Status")
-plt.ylabel("Count")
+plt.xlabel("Placement Status")
+plt.ylabel("Candidate Count")
 
 plt.tight_layout()
 plt.show()
@@ -50,6 +81,8 @@ print("Target distribution helps identify class balance.")
 # =========================================================
 # 2. SKILLS MATCH DISTRIBUTION
 # =========================================================
+# Analyze overall skills match percentage
+
 plt.figure(figsize=(7, 4))
 
 sns.histplot(
@@ -59,7 +92,7 @@ sns.histplot(
 )
 
 plt.title("Skills Match Percentage Distribution")
-plt.xlabel("Skills Match %")
+plt.xlabel("Skills Match Percentage")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
@@ -70,8 +103,10 @@ print("\nObservation:")
 print("Most candidates have medium to high skills match percentage.")
 
 # =========================================================
-# 3. TECHNICAL SCORE DISTRIBUTION
+# 3. TECHNICAL SCORE ANALYSIS
 # =========================================================
+# Detect score spread and possible outliers
+
 plt.figure(figsize=(7, 4))
 
 sns.boxplot(
@@ -88,8 +123,10 @@ print("\nObservation:")
 print("Boxplot helps detect score spread and possible outliers.")
 
 # =========================================================
-# 4. GENDER VS PLACEMENT
+# 4. GENDER VS PLACEMENT ANALYSIS
 # =========================================================
+# Compare placement outcomes across genders
+
 plt.figure(figsize=(7, 4))
 
 sns.countplot(
@@ -100,7 +137,7 @@ sns.countplot(
 
 plt.title("Gender vs Placement Status")
 plt.xlabel("Gender")
-plt.ylabel("Count")
+plt.ylabel("Candidate Count")
 
 plt.tight_layout()
 plt.show()
@@ -110,8 +147,10 @@ print("\nObservation:")
 print("This chart compares placement distribution across genders.")
 
 # =========================================================
-# 5. DEGREE SPECIALIZATION VS PLACEMENT
+# 5. DEGREE SPECIALIZATION ANALYSIS
 # =========================================================
+# Compare placement outcomes across specializations
+
 plt.figure(figsize=(10, 5))
 
 sns.countplot(
@@ -122,7 +161,7 @@ sns.countplot(
 
 plt.title("Degree Specialization vs Placement")
 plt.xlabel("Degree Specialization")
-plt.ylabel("Count")
+plt.ylabel("Candidate Count")
 
 plt.xticks(rotation=45)
 
@@ -136,6 +175,8 @@ print("Some specializations may show higher placement success.")
 # =========================================================
 # 6. CORRELATION HEATMAP
 # =========================================================
+# Analyze relationships between numerical features
+
 plt.figure(figsize=(12, 8))
 
 sns.heatmap(
@@ -154,28 +195,31 @@ print("\nObservation:")
 print("Heatmap shows relationships between numerical features.")
 
 # =========================================================
-# FINAL INSIGHTS
+# FINAL BUSINESS INSIGHTS
 # =========================================================
+# Summary of important analytical findings
 
 print("\n" + "=" * 50)
 print("KEY INSIGHTS")
 print("=" * 50)
 
 print("""
+
 1. Candidates with higher technical scores
    showed better placement probability.
 
-2. Skills match percentage plays a major role
+2. Skills match percentage played a major role
    in placement success.
 
-3. Candidates with strong academic performance
-   generally achieved better outcomes.
+3. Strong academic performance contributed
+   to better hiring outcomes.
 
-4. Some degree specializations showed higher
-   placement rates compared to others.
+4. Some degree specializations achieved
+   higher placement rates.
 
-5. Distribution charts helped identify
-   candidate performance patterns and outliers.
+5. Visualization analysis helped identify
+   candidate patterns and performance trends.
+
 """)
 
 print("\nEDA Completed Successfully ✅")
